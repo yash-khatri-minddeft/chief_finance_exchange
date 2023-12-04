@@ -3,7 +3,6 @@ import { getAddress } from '@ethersproject/address';
 import { AddressZero } from '@ethersproject/constants';
 import { JsonRpcSigner, Web3Provider } from '@ethersproject/providers';
 import { BigNumber } from '@ethersproject/bignumber';
-import { ROUTER_ADDRESS } from '../constants';
 import { ChainId, JSBI, Percent, Token, CurrencyAmount, Currency, ETHER } from '@bidelity/sdk';
 import { TokenAddressMap } from '../state/lists/hooks';
 import { ROUTER_ABI } from '../constants/abis/router-abi';
@@ -24,6 +23,7 @@ const ETHERSCAN_PREFIXES: { [chainId in ChainId]: string } = {
   5: 'goerli.',
   42: 'kovan.',
 };
+const ROUTER_CONTRACT_ADDRESS = process.env.REACT_APP_ROUTER_ADDRESS as string
 
 export function getEtherscanLink(
   chainId: ChainId,
@@ -99,7 +99,7 @@ export function getContract(address: string, ABI: any, library: Web3Provider, ac
 
 // account is optional
 export function getRouterContract(_: number, library: Web3Provider, account?: string): Contract {
-  return getContract(ROUTER_ADDRESS, ROUTER_ABI, library, account);
+  return getContract(ROUTER_CONTRACT_ADDRESS, ROUTER_ABI, library, account);
 }
 
 export function escapeRegExp(string: string): string {

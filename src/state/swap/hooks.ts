@@ -15,7 +15,6 @@ import { Field, replaceSwapState, selectCurrency, setRecipient, switchCurrencies
 import { SwapState } from './reducer';
 import { useUserSlippageTolerance } from '../user/hooks';
 import { computeSlippageAdjustedAmounts } from '../../utils/prices';
-import { FACTORY_ADDRESS, ROUTER_ADDRESS } from '../../constants';
 import { useLocation } from 'react-router-dom';
 
 export function useSwapState(): AppState['swap'] {
@@ -86,8 +85,9 @@ export function tryParseAmount(value?: string, currency?: Currency): CurrencyAmo
   // necessary for all paths to return a value
   return undefined;
 }
-
-const BAD_RECIPIENT_ADDRESSES: string[] = [FACTORY_ADDRESS, ROUTER_ADDRESS];
+const ROUTER_CONTRACT_ADDRESS = process.env.REACT_APP_ROUTER_ADDRESS as string
+const FACTORY_CONTRACT_PRIMARY_ADDRESS = process.env.REACT_APP_FACTORY_PRIMARY_ADDRESS as string
+const BAD_RECIPIENT_ADDRESSES: string[] = [FACTORY_CONTRACT_PRIMARY_ADDRESS, ROUTER_CONTRACT_ADDRESS];
 
 /**
  * Returns true if any of the pairs or tokens in a trade have the given checksummed address

@@ -37,9 +37,9 @@ let _SOLIDITY_TYPE_MAXIMA
   Rounding[(Rounding['ROUND_UP'] = 2)] = 'ROUND_UP'
 })(exports.Rounding || (exports.Rounding = {}))
 
-const FACTORY_ADDRESS = '0x4D21B0E30d94f54ef9B5324709ceB5C06F86EBa8'
-const INIT_CODE_HASH = '0xe973e3d886c55dcdd68af79ba1794ef0161db147d6a5eda7d2bf70fce9265a03'
+const FACTORY_ADDRESS_P_MAINNET = process.env.REACT_APP_FACTORY_ADDRESS_PRIMARY_MAINNET
 const MINIMUM_LIQUIDITY = /*#__PURE__*/ JSBI.BigInt(1000) // exports for internal consumption
+const INIT_CODE_HASH = process.env.REACT_APP_INIT_CODE_HASH
 
 const ZERO = /*#__PURE__*/ JSBI.BigInt(0)
 const ONE = /*#__PURE__*/ JSBI.BigInt(1)
@@ -915,7 +915,7 @@ const Pair = /*#__PURE__*/ (function () {
             : _PAIR_ADDRESS_CACHE2[tokens[0].address],
           ((_extends2 = {}),
           (_extends2[tokens[1].address] = address.getCreate2Address(
-            FACTORY_ADDRESS,
+            FACTORY_ADDRESS_P_MAINNET,
             solidity.keccak256(
               ['bytes'],
               [solidity.pack(['address', 'address'], [tokens[0].address, tokens[1].address])]
@@ -1857,7 +1857,7 @@ exports.JSBI = JSBI
 exports.Currency = Currency
 exports.CurrencyAmount = CurrencyAmount
 exports.ETHER = ETHER
-exports.FACTORY_ADDRESS = FACTORY_ADDRESS
+exports.FACTORY_ADDRESS_P_MAINNET = FACTORY_ADDRESS_P_MAINNET
 exports.Fetcher = Fetcher
 exports.Fraction = Fraction
 exports.INIT_CODE_HASH = INIT_CODE_HASH

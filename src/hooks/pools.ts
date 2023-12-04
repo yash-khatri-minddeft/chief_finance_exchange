@@ -1,5 +1,4 @@
 import { useEffect, useMemo, useState } from 'react';
-import { FACTORY_ADDRESS } from '../constants';
 import ERC20_INTERFACE from '../constants/abis/erc20';
 import { PAIR_INTERFACE } from '../data/Reserves';
 import { useMultipleContractSingleData } from '../state/multicall/hooks';
@@ -27,8 +26,10 @@ export function usePools(): PoolCurrency[] {
 
   const callData: any = [];
 
+  const FACTORY_CONTRACT_PRIMARY_ADDRESS = process.env.REACT_APP_FACTORY_PRIMARY_ADDRESS
+
   for (let i = 0; i <= mockCount; i++) {
-    callData.push([FACTORY_ADDRESS, factory?.interface.encodeFunctionData('allPairs', [i])]);
+    callData.push([FACTORY_CONTRACT_PRIMARY_ADDRESS, factory?.interface.encodeFunctionData('allPairs', [i])]);
   }
 
   const fetchData = async () => {

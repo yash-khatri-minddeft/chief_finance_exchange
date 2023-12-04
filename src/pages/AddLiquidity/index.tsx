@@ -9,7 +9,6 @@ import { AutoColumn, ColumnCenter } from '../../components/Column';
 import TransactionConfirmationModal, { ConfirmationModalContent } from '../../components/TransactionConfirmationModal';
 import CurrencyInputPanel from '../../components/CurrencyInputPanel';
 import { RowBetween } from '../../components/Row';
-import { ROUTER_ADDRESS } from '../../constants';
 import { PairState, usePair } from '../../data/Reserves';
 import { useActiveWeb3React } from '../../hooks';
 import { useCurrency } from '../../hooks/Tokens';
@@ -159,10 +158,11 @@ export default function AddLiquidity({
     },
     {}
   );
+  const ROUTER_CONTRACT_ADDRESS = process.env.REACT_APP_ROUTER_ADDRESS
 
   // check whether the user has approved the router on the tokens
-  const [approvalA, approveACallback] = useApproveCallback(parsedAmounts[Field.CURRENCY_A], ROUTER_ADDRESS);
-  const [approvalB, approveBCallback] = useApproveCallback(parsedAmounts[Field.CURRENCY_B], ROUTER_ADDRESS);
+  const [approvalA, approveACallback] = useApproveCallback(parsedAmounts[Field.CURRENCY_A], ROUTER_CONTRACT_ADDRESS);
+  const [approvalB, approveBCallback] = useApproveCallback(parsedAmounts[Field.CURRENCY_B], ROUTER_CONTRACT_ADDRESS);
 
   const addTransaction = useTransactionAdder();
 

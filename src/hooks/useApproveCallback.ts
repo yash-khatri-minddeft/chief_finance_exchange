@@ -2,7 +2,6 @@ import { MaxUint256 } from '@ethersproject/constants';
 import { TransactionResponse } from '@ethersproject/providers';
 import { Trade, TokenAmount, CurrencyAmount, ETHER } from '@bidelity/sdk';
 import { useCallback, useMemo } from 'react';
-import { ROUTER_ADDRESS } from '../constants';
 import { useTokenAllowance } from '../data/Allowances';
 import { Field } from '../state/swap/actions';
 import { useTransactionAdder, useHasPendingApproval } from '../state/transactions/hooks';
@@ -123,10 +122,11 @@ export function useApproveCallback(
 
 // wraps useApproveCallback in the context of a swap
 export function useApproveCallbackFromTrade(trade?: Trade, allowedSlippage = 0) {
+  const ROUTER_CONTRACT_ADDRESS = process.env.REACT_APP_ROUTER_ADDRESS
   const amountToApprove = useMemo(
     () => (trade ? computeSlippageAdjustedAmounts(trade, allowedSlippage)[Field.INPUT] : undefined),
     [trade, allowedSlippage]
   );
 
-  return useApproveCallback(amountToApprove, ROUTER_ADDRESS);
+  return useApproveCallback(amountToApprove,ROUTER_CONTRACT_ADDRESS);
 }

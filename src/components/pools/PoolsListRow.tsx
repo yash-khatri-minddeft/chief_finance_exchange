@@ -51,7 +51,6 @@ export default function PoolsListRow({ data }: Props) {
   // });
   const { token0, token1 } = data;
   // const [volume, setVolume] = useState<string>('-');
-  // console.log(data);
   const currencyA = useCurrency(token0);
   const currencyB = useCurrency(token1);
 

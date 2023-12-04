@@ -3,7 +3,6 @@ import { abi as STAKING_REWARDS_ABI } from '@uniswap/liquidity-staker/build/Stak
 import { ChainId, WETH } from '@bidelity/sdk';
 import { abi as IUniswapV2PairABI } from '@uniswap/v2-core/build/IUniswapV2Pair.json';
 import { useMemo } from 'react';
-import { FACTORY_ADDRESS } from '../constants';
 import {
   ARGENT_WALLET_DETECTOR_ABI,
   ARGENT_WALLET_DETECTOR_MAINNET_ADDRESS,
@@ -51,6 +50,8 @@ export function useArgentWalletDetectorContract(): Contract | null {
   );
 }
 
+const FACTORY_CONTRACT_PRIMARY_ADDRESS = process.env.REACT_APP_FACTORY_PRIMARY_ADDRESS
+
 export function useENSRegistrarContract(withSignerIfPossible?: boolean): Contract | null {
   const { chainId } = useActiveWeb3React();
   let address: string | undefined;
@@ -89,5 +90,5 @@ export function useStakingContract(stakingAddress?: string, withSignerIfPossible
 }
 
 export function useFactoryContract(): Contract | null {
-  return useContract(FACTORY_ADDRESS, FACTORY_ABI, false);
+  return useContract(FACTORY_CONTRACT_PRIMARY_ADDRESS, FACTORY_ABI, false);
 }

@@ -34,10 +34,9 @@ let Rounding
   Rounding[(Rounding['ROUND_HALF_UP'] = 1)] = 'ROUND_HALF_UP'
   Rounding[(Rounding['ROUND_UP'] = 2)] = 'ROUND_UP'
 })(Rounding || (Rounding = {}))
-
-const FACTORY_ADDRESS = '0x4D21B0E30d94f54ef9B5324709ceB5C06F86EBa8'
-const INIT_CODE_HASH = '0xe973e3d886c55dcdd68af79ba1794ef0161db147d6a5eda7d2bf70fce9265a03'
 const MINIMUM_LIQUIDITY = /*#__PURE__*/ JSBI.BigInt(1000) // exports for internal consumption
+const FACTORY_ADDRESS_P_MAINNET = process.env.REACT_APP_FACTORY_ADDRESS_PRIMARY_MAINNET
+const INIT_CODE_HASH = process.env.REACT_APP_INIT_CODE_HASH
 
 const ZERO = /*#__PURE__*/ JSBI.BigInt(0)
 const ONE = /*#__PURE__*/ JSBI.BigInt(1)
@@ -979,7 +978,7 @@ const Pair = /*#__PURE__*/ (function () {
             : _PAIR_ADDRESS_CACHE2[tokens[0].address],
           ((_extends2 = {}),
           (_extends2[tokens[1].address] = getCreate2Address(
-            FACTORY_ADDRESS,
+            FACTORY_ADDRESS_P_MAINNET,
             keccak256(['bytes'], [pack(['address', 'address'], [tokens[0].address, tokens[1].address])]),
             INIT_CODE_HASH
           )),
@@ -2027,7 +2026,7 @@ export {
   Currency,
   CurrencyAmount,
   ETHER,
-  FACTORY_ADDRESS,
+  FACTORY_ADDRESS_P_MAINNET,
   Fetcher,
   Fraction,
   INIT_CODE_HASH,
