@@ -60,6 +60,7 @@ import { BigNumber } from '@ethersproject/bignumber';
 
 export default function Swap() {
   const loadedUrlParams = useDefaultsFromURLSearch();
+  console.log('test commit console');
 
   // token warning stuff
   const [loadedInputCurrency, loadedOutputCurrency] = [
