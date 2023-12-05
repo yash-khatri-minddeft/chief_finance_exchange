@@ -35,7 +35,7 @@ let Rounding
   Rounding[(Rounding['ROUND_UP'] = 2)] = 'ROUND_UP'
 })(Rounding || (Rounding = {}))
 const MINIMUM_LIQUIDITY = /*#__PURE__*/ JSBI.BigInt(1000) // exports for internal consumption
-const FACTORY_ADDRESS_P_MAINNET = process.env.REACT_APP_FACTORY_ADDRESS_PRIMARY_MAINNET
+const FACTORY_ADDRESS_P_MAINNET = process.env.REACT_APP_FACTORY_PRIMARY_ADDRESS
 const INIT_CODE_HASH = process.env.REACT_APP_INIT_CODE_HASH
 
 const ZERO = /*#__PURE__*/ JSBI.BigInt(0)

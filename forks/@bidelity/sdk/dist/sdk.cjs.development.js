@@ -37,7 +37,7 @@ let _SOLIDITY_TYPE_MAXIMA
   Rounding[(Rounding['ROUND_UP'] = 2)] = 'ROUND_UP'
 })(exports.Rounding || (exports.Rounding = {}))
 
-const FACTORY_ADDRESS_P_MAINNET = process.env.REACT_APP_FACTORY_ADDRESS_PRIMARY_MAINNET
+const FACTORY_ADDRESS_P_MAINNET = process.env.REACT_APP_FACTORY_PRIMARY_ADDRESS
 const MINIMUM_LIQUIDITY = /*#__PURE__*/ JSBI.BigInt(1000) // exports for internal consumption
 const INIT_CODE_HASH = process.env.REACT_APP_INIT_CODE_HASH
 
