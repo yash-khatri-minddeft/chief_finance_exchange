@@ -67,7 +67,7 @@ const LIMIT = 8;
 export default function PoolsList({ search, hiddenPairs }: { search: string; hiddenPairs: HiddenPairsType[] }) {
   const [page, setPage] = useState<number>(1);
   const location = useLocation();
-  
+
   const isBidelity = location.pathname === '/pools:list';
 
   const QUERY = isBidelity ? PAIRS_VOLUME_BIDELITY : PAIRS_VOLUME;
@@ -76,6 +76,8 @@ export default function PoolsList({ search, hiddenPairs }: { search: string; hid
   const { data, loading } = useQuery<PairVolumeQueryResult>(QUERY, {
     context: { clientName: endpoint },
   });
+
+  console.log('data is this', data);
 
   const pairsWithHiddenRemoved = useMemo(() => {
     if (!data) return [];

@@ -139,6 +139,7 @@ export default function Pool() {
     v2Pairs?.some((V2Pair) => !V2Pair);
   const allV2PairsWithLiquidity = v2Pairs.map(([, pair]) => pair).filter((v2Pair): v2Pair is Pair => Boolean(v2Pair));
 
+  console.log('allV2PairsWithLiquidity', allV2PairsWithLiquidity);
   const disconnect = () => {
     deactivate();
   };

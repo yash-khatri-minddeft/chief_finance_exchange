@@ -28,7 +28,8 @@ const endpoint1 = new HttpLink({
 });
 
 const endpoint2 = new HttpLink({
-  uri: 'https://api.studio.thegraph.com/query/51975/chieffinance/0.0.1',
+  uri: 'https://api.studio.thegraph.com/query/55988/chief-finance-graph/0.0.2',
+  // uri: 'https://api.studio.thegraph.com/query/51975/chieffinance/0.0.1',
 });
 
 export const client = new ApolloClient({
