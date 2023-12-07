@@ -145,7 +145,6 @@ export default function Pool() {
     tokensLoading;
   const allV2PairsWithLiquidity = v2Pairs.map(([, pair]) => pair).filter((v2Pair): v2Pair is Pair => Boolean(v2Pair));
 
-  console.log('allV2PairsWithLiquidity', tokenPairsWithLiquidityTokens);
   const disconnect = () => {
     deactivate();
   };

@@ -77,8 +77,6 @@ export default function PoolsList({ search, hiddenPairs }: { search: string; hid
     context: { clientName: endpoint },
   });
 
-  console.log('data is this', data);
-
   const pairsWithHiddenRemoved = useMemo(() => {
     if (!data) return [];
     return data.pairDayDatas.filter((item) => {

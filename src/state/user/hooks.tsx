@@ -207,7 +207,6 @@ export function toV2LiquidityToken([tokenA, tokenB]: [Token, Token]): Token {
 export function useTrackedTokenPairs(newPairsRaw: TokensQueryResult | undefined): [Token, Token][] {
   const { chainId } = useActiveWeb3React();
   const oldTokens = useAllTokens();
-  console.log('oldTokens', oldTokens);
   const newTokens = newPairsRaw?.tokens?.length
     ? newPairsRaw.tokens.map((token) => new Token(5, token.id, Number(token.decimals), token.symbol, token.name))
     : [];
@@ -216,7 +215,6 @@ export function useTrackedTokenPairs(newPairsRaw: TokensQueryResult | undefined)
     (acc, newToken) => ({ ...acc, [newToken.address]: newToken }),
     {}
   );
-  console.log('newToken', newTokensMap);
   const tokens = useMemo(() => {
     return { ...newTokensMap };
   }, [newTokensMap]);
