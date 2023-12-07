@@ -201,7 +201,6 @@ export default function FullPositionCard({ pair, stakedBalance }: PositionCardPr
   const addToMetamask = useAddToMetamask(lpToken);
 
   const [showMore, setShowMore] = useState(false);
-
   const userDefaultPoolBalance = useTokenBalance(account ?? undefined, pair.liquidityToken);
   const totalPoolTokens = useTotalSupply(pair.liquidityToken);
 
@@ -240,7 +239,7 @@ export default function FullPositionCard({ pair, stakedBalance }: PositionCardPr
           </InlineDiv>
 
           <TEXT.default fontWeight={600} fontSize={12} color="textPrimary" marginTop="8px">
-            04.2023
+            {userPoolBalance?.toSignificant(6)}
           </TEXT.default>
         </PairInfo>
         <div style={{ display: 'flex' }}>
