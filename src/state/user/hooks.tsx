@@ -5,7 +5,6 @@ import { shallowEqual, useDispatch, useSelector } from 'react-redux';
 import { PINNED_PAIRS, LP_TOKEN_NAME, LP_TOKEN_SYMBOL } from '../../constants';
 
 import { useActiveWeb3React } from '../../hooks';
-import { useAllTokens } from '../../hooks/Tokens';
 import { AppDispatch, AppState } from '../index';
 import {
   addSerializedPair,
@@ -206,7 +205,6 @@ export function toV2LiquidityToken([tokenA, tokenB]: [Token, Token]): Token {
  */
 export function useTrackedTokenPairs(newPairsRaw: TokensQueryResult | undefined): [Token, Token][] {
   const { chainId } = useActiveWeb3React();
-  const oldTokens = useAllTokens();
   const newTokens = newPairsRaw?.tokens?.length
     ? newPairsRaw.tokens.map((token) => new Token(5, token.id, Number(token.decimals), token.symbol, token.name))
     : [];
