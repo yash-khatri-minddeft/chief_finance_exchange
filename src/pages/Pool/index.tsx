@@ -17,6 +17,8 @@ import { Link } from 'react-router-dom';
 import FullPositionCard from '../../components/PositionCard';
 import { PageWrap } from '../AppBody';
 import PoolsLink from '../../components/Poolslink';
+import { useQuery } from '@apollo/client';
+import { TOKENS_BIDELITY, TokensQueryResult } from 'pages/Pools/query';
 
 const PoolPageWrapper = styled.div`
   position: relative;
@@ -109,7 +111,10 @@ export default function Pool() {
   const toggleWalletModal = useWalletModalToggle();
 
   //fetch the user's balances of all tracked V2 LP tokens
-  const trackedTokenPairs = useTrackedTokenPairs();
+  const { data: allTokens, loading: tokensLoading } = useQuery<TokensQueryResult>(TOKENS_BIDELITY, {
+    context: { clientName: 'endpoint2' },
+  });
+  const trackedTokenPairs = useTrackedTokenPairs(allTokens);
 
   const tokenPairsWithLiquidityTokens = useMemo(
     () => trackedTokenPairs.map((tokens) => ({ liquidityToken: toV2LiquidityToken(tokens), tokens })),
@@ -136,10 +141,11 @@ export default function Pool() {
   const v2IsLoading =
     fetchingV2PairBalances ||
     v2Pairs?.length < liquidityTokensWithBalances.length ||
-    v2Pairs?.some((V2Pair) => !V2Pair);
+    v2Pairs?.some((V2Pair) => !V2Pair) ||
+    tokensLoading;
   const allV2PairsWithLiquidity = v2Pairs.map(([, pair]) => pair).filter((v2Pair): v2Pair is Pair => Boolean(v2Pair));
 
-  console.log('allV2PairsWithLiquidity', allV2PairsWithLiquidity);
+  console.log('allV2PairsWithLiquidity', tokenPairsWithLiquidityTokens);
   const disconnect = () => {
     deactivate();
   };

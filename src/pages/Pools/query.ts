@@ -29,6 +29,15 @@ export type PairVolumeQueryResult = {
   }[];
 };
 
+export type TokensQueryResult = {
+  tokens: {
+    id: string;
+    name: string;
+    symbol: string;
+    decimals: number;
+  }[];
+};
+
 export const PAIRS_VOLUME = gql`
   {
     pairDayDatas(orderBy: dailyVolumeUSD, where: { dailyVolumeUSD_gt: "1000000" }, orderDirection: desc) {
@@ -59,6 +68,17 @@ export const PAIRS_VOLUME_BIDELITY = gql`
         id
         symbol
       }
+    }
+  }
+`;
+
+export const TOKENS_BIDELITY = gql`
+  query MyQuery {
+    tokens {
+      id
+      symbol
+      name
+      decimals
     }
   }
 `;
