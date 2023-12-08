@@ -205,17 +205,17 @@ export function toV2LiquidityToken([tokenA, tokenB]: [Token, Token]): Token {
  */
 export function useTrackedTokenPairs(newPairsRaw: TokensQueryResult | undefined): [Token, Token][] {
   const { chainId } = useActiveWeb3React();
-  const allTokens = newPairsRaw?.tokens?.length
+  const newTokens = newPairsRaw?.tokens?.length
     ? newPairsRaw.tokens.map((token) => new Token(5, token.id, Number(token.decimals), token.symbol, token.name))
     : [];
 
-  const allTokensMap: Record<string, Token> = allTokens.reduce(
+  const newTokensMap: Record<string, Token> = newTokens.reduce(
     (acc, newToken) => ({ ...acc, [newToken.address]: newToken }),
     {}
   );
   const tokens = useMemo(() => {
-    return { ...allTokensMap };
-  }, [allTokensMap]);
+    return { ...newTokensMap };
+  }, [newTokensMap]);
 
   // pinned pairs
   const pinnedPairs = useMemo(() => (chainId ? PINNED_PAIRS[chainId] ?? [] : []), [chainId]);
